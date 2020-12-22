@@ -9,10 +9,13 @@ public class TicTacToe implements ActionListener{
 	Random random = new Random();
 	JFrame frame = new JFrame();
 	JPanel title_panel = new JPanel();
+	JPanel reset_panel = new JPanel();
 	JPanel button_panel = new JPanel();
 	JLabel textfield = new JLabel();
 	
 	JButton[] buttons = new JButton[9];
+	JButton reset_button = new JButton();
+	
 	boolean player1_turn;
 	
 	//Constructor
@@ -47,8 +50,16 @@ public class TicTacToe implements ActionListener{
 		}
 		
 		
-		title_panel.add(textfield);
+		title_panel.add(textfield); 
+		reset_button.setText("Reset");
+		reset_button.setBounds(0, 0, 100, 50);
+		reset_button.addActionListener(this);
+		//reset_button.setBounds(200, 100, 100, 50);
+		
+		
+		//reset_panel.add(reset_button,BorderLayout.WEST);		
 		frame.add(title_panel,BorderLayout.NORTH);
+		frame.add(reset_button);
 		frame.add(button_panel);
 		
 		firstTurn();
@@ -60,6 +71,11 @@ public class TicTacToe implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==reset_button){
+			//System.out.println("button");
+			new TicTacToe();
+		}
+		
 		for(int i=0;i<9;i++) {
 			if(e.getSource()==buttons[i]) {
 				if(player1_turn) {
